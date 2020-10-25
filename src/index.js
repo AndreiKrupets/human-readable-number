@@ -1,6 +1,6 @@
 module.exports = function toReadable (number) {
-const numbers = { 
-0: 'zero', 
+const numbers = {
+0 : 'zero',    
 1 : 'one',
 2 : 'two',
 3 : 'three',
@@ -30,5 +30,38 @@ const numbers = {
 90 : 'ninety'
 };
 
-return numbers[number];
+let result = '';
+const hundred = Math.floor(number / 100);
+const underHundred = number % 100;
+const ten = Math.floor(number % 100) - number % 10;
+const unit = number % 10;
+if (number === 0) {
+    return 'zero';
+}
+if (number % 100 === 0) {
+    console.log('wewewewe')
+    return `${numbers[hundred]} hundred`;
+}
+if ( hundred > 0) {
+    result += `${numbers[hundred]} hundred `;
+    console.log('one');
+    console.log(ten);
+    
+}
+if (underHundred <=20) {
+    result += `${numbers[underHundred]} `;
+    console.log('two');
+    
+}
+if (underHundred > 21 && underHundred % 10 === 0) {
+    result += `${numbers[ten]}`;
+    console.log('three');
+    return result;
+}
+
+if (underHundred >= 21 && underHundred % 10 !==0) {
+    result += `${numbers[ten]} ${numbers[unit]}`;
+    console.log('four');
+}
+return result.trim();
 }
